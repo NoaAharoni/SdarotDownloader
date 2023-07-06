@@ -14,7 +14,7 @@ SEASON = 'season_'
 EPISODE = 'episode_'
 VIDEO_END = '.mp4'
 session = requests.session()
-SDAROT_FILE = r'C:\Users\tlv\Documents\Sdarot'
+SDAROT_FILE = r'enter here the path of the file you want to download to in your computer'
 
 
 def login():
