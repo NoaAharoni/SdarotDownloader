@@ -8,8 +8,8 @@ import home
 
 SDAROT_FULL_WATCH = 'https://www.sdarot.tw/ajax/watch'
 LOGIN = '/login'
-USERNAME = 'Noa2022'
-PASSWORD = 'Nohiedof16'
+USERNAME = 'enter here your username'
+PASSWORD = 'enter here your password'
 SEASON = 'season_'
 EPISODE = 'episode_'
 VIDEO_END = '.mp4'

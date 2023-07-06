@@ -17,11 +17,20 @@ EXIST_MESSAGE = 'The episode already exists, you can watch it in your folder, en
 
 
 def get_shows_dict():
+    """
+    function that get dict with info about all the shows in sdarot website
+    :return: the dict with info about all the shows
+    """
     shows_dict = requests.get(f'{BASE_URL}{SDAROT_INDEX}', params=SHOWS_DICT_PARAM).json()
     return shows_dict
 
 
 def find_show_id(show_name):
+    """
+    function that find the show id
+    :param show_name: the show name ( hebrew or english )
+    :return: the show id
+    """
     shows_dict = get_shows_dict()
     show_id = ''
     for show in shows_dict:
@@ -31,12 +40,22 @@ def find_show_id(show_name):
 
 
 def get_parse_show(show_id):
+    """
+    function that parse the html answer about show
+    :param show_id: the show id
+    :return: the parse html answer about show
+    """
     show_html_details = requests.get(f'{BASE_URL}{BASE_WATCH}{show_id}')
     parse_show = BeautifulSoup(show_html_details.content, 'html.parser')
     return parse_show
 
 
 def get_relevant_answer(parse_show):
+    """
+    function that find the relevant part of the parse html about show
+    :param parse_show: the parse html answer about show
+    :return: the relevant part ( the info inside the div )
+    """
     relevant_answer = parse_show.find('div', attrs={'class': 'content'})
     return relevant_answer
 
@@ -54,9 +73,7 @@ def get_series(relevant_answer, parse_show):
 
 def check_if_exist(series):
     episode_dir = get_episodes.get_final_dir(get_episodes.get_basic_dir(series), get_episodes.get_file_name(series))
-    if os.path.exists(episode_dir):
-        return True
-    return False
+    return os.path.exists(episode_dir)
 
 
 def get_movie(relevant_answer, parse_show, series):
